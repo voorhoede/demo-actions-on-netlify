@@ -1,5 +1,5 @@
 name: Log event
-on: [check_suite, push]
+on: [check_suite]
 
 jobs:
   build:
@@ -12,6 +12,7 @@ jobs:
         with:
           version: 10.x
       - name: Log event data
+        if: github.event.check_suite.app.name == 'Netlify' && github.event.check_suite.conclusion == 'success'
         run: |
           npm install
           node ./actions/log-event.js
