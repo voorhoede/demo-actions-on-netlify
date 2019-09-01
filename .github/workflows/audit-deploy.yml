@@ -6,13 +6,18 @@ jobs:
     name: Log event job
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - name: Successful Netlify deploys only
+        id: netlify_deploy
+        if: github.event.check_suite.app.name == 'Netlify' && github.event.check_suite.conclusion == 'success'
+        run: echo Netlify deployed successfully
+      - name: Git checkout
+        uses: actions/checkout@master
       - name: Use Node.js 10.x
         uses: actions/setup-node@v1
         with:
           version: 10.x
       - name: Log event data
-        if: github.event.check_suite.app.name == 'Netlify' && github.event.check_suite.conclusion == 'success'
+        if: job.steps.netlify_deploy.status == success()
         run: |
           npm install
           node ./actions/log-event.js
