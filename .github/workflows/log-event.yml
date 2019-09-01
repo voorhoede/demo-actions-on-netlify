@@ -12,4 +12,6 @@ jobs:
         with:
           version: 10.x
       - name: Log event data
-        run: node ./actions/log-event.js
+        run: |
+          npm install
+          node ./actions/log-event.js
