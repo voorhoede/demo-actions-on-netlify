@@ -26,4 +26,4 @@ jobs:
         if: github.event.check_suite.app.name == 'Netlify' && github.event.check_suite.conclusion == 'success'
         run: npm run test:e2e
         env:
-          CYPRESS_BASE_URL: DEPLOY_URL
+          CYPRESS_BASE_URL: ${{ DEPLOY_URL }}
