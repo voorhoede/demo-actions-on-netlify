@@ -25,7 +25,9 @@
     "@actions/core": "^1.0.0"
   },
   "devDependencies": {
-    "cypress": "^3.4.1",
     "serve": "^11.1.0"
+  },
+  "optionalDependencies": {
+    "cypress": "^3.4.1"
   }
 }

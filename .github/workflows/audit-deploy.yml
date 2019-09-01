@@ -6,12 +6,18 @@ jobs:
     name: Log event job
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+
+      - name: Git checkout
+        uses: actions/checkout@master
+
       - name: Use Node.js 10.x
         uses: actions/setup-node@v1
         with:
           version: 10.x
+
+      - name: Install npm dependencies
         run: npm install
+
       - name: Run end-to-end tests with Cypress
         if: github.event.check_suite.app.name == 'Netlify' && github.event.check_suite.conclusion == 'success'
         run: |
