@@ -24,4 +24,4 @@ jobs:
 
       - name: Run end-to-end tests with Cypress
         if: github.event.check_suite.app.name == 'Netlify' && github.event.check_suite.conclusion == 'success'
-        run: CYPRESS_BASE_URL=DEPLOY_URL npm run test:e2e
+        run: npm run test:e2e
