@@ -11,8 +11,9 @@ jobs:
         uses: actions/setup-node@v1
         with:
           version: 10.x
-      - name: Log event data
+        run: npm install
+      - name: Run end-to-end tests with Cypress
         if: github.event.check_suite.app.name == 'Netlify' && github.event.check_suite.conclusion == 'success'
         run: |
-          npm install
-          node ./actions/log-event.js
+          CYPRESS_BASE_URL=https://demo-actions-on-netlify.netlify.com
+          npm run test:e2e
