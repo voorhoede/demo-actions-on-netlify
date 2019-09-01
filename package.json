@@ -1,0 +1,24 @@
+{
+  "name": "demo-actions-on-netlify",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prebuild": "rm -rf dist/",
+    "build": "cp -r src/ dist/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jbmoelker/demo-actions-on-netlify.git"
+  },
+  "keywords": [],
+  "author": "Jasper Moelker <jasper@voorhoede.nl> (https://voorhoede.nl/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jbmoelker/demo-actions-on-netlify/issues"
+  },
+  "homepage": "https://github.com/jbmoelker/demo-actions-on-netlify#readme",
+  "dependencies": {
+    "@actions/core": "^1.0.0"
+  }
+}

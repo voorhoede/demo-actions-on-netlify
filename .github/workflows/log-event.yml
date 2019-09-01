@@ -1,0 +1,10 @@
+name: Log event
+on: [check_suite, push]
+
+jobs:
+  build:
+    name: Log event
+    runs-on: ubuntu-latest
+    steps:
+      # - uses: actions/checkout@v1
+      - uses: ./.github/actions/log-event
