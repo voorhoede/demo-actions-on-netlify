@@ -13,3 +13,4 @@ core.debug(`deploy url: ${deployUrl}`)
 
 // https://github.com/actions/toolkit/tree/master/packages/core#exporting-variables
 core.exportVariable('DEPLOY_URL', deployUrl)
+core.exportVariable('CYPRESS_BASE_URL', deployUrl)
