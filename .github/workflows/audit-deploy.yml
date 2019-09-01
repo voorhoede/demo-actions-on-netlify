@@ -12,9 +12,11 @@ jobs:
         run: echo Netlify deployed successfully
 
       - name: Git checkout
+        if: job.steps.netlify_deploy.status == success()
         uses: actions/checkout@master
 
       - name: Use Node.js 10.x
+        if: job.steps.netlify_deploy.status == success()
         uses: actions/setup-node@v1
         with:
           version: 10.x
