@@ -8,4 +8,4 @@ jobs:
     steps:
       # - uses: actions/checkout@v1
       - name: Log event step
-        run: node ./.github/actions/log-event/log-event.js
+        run: node ./actions/log-event.js

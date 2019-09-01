@@ -1,6 +1,0 @@
-name: 'Log event'
-description: 'Log action event payload'
-author: 'Voorhoede'
-runs:
-  using: 'node12'
-  main: './log-event.js'
