@@ -1,4 +1,4 @@
-context('Demo', () => {
+context(`Demo (${Cypress.config().baseUrl})`, () => {
     beforeEach(() => {
       cy.visit('/')
     })
