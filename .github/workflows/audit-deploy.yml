@@ -1,9 +1,9 @@
-name: Log event
+name: Audit Netlify Deploy Preview
 on: [check_suite]
 
 jobs:
-  build:
-    name: Log event job
+  e2e:
+    name: Run e2e tests on deploy preview
     runs-on: ubuntu-latest
     steps:
 
