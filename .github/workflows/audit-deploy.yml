@@ -16,7 +16,7 @@ jobs:
           version: 10.x
 
       - name: Install npm dependencies
-        run: npm install
+        run: npm ci
 
       - name: Set Deploy URL
         if: github.event.check_suite.app.name == 'Netlify' && github.event.check_suite.conclusion == 'success'
@@ -25,3 +25,28 @@ jobs:
       - name: Run end-to-end tests with Cypress
         if: github.event.check_suite.app.name == 'Netlify' && github.event.check_suite.conclusion == 'success'
         run: npm run test:e2e
+  
+  lighthouse:
+    name: Run Lighthouse
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Git checkout
+        uses: actions/checkout@master
+
+      - name: Use Node.js 10.x
+        uses: actions/setup-node@v1
+        with:
+          version: 10.x
+
+      - name: Install npm dependencies
+        run: npm ci --no-optional
+
+      - name: Set Deploy URL
+        if: github.event.check_suite.app.name == 'Netlify' && github.event.check_suite.conclusion == 'success'
+        run: node ./actions/set-deploy-url.js
+
+      - name: Run Lighthouse audit
+        if: github.event.check_suite.app.name == 'Netlify' && github.event.check_suite.conclusion == 'success'
+        run: npx lighthouse $DEPLOY_URL
+
