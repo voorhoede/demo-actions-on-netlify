@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "prebuild": "rm -rf dist/",
-    "build": "cp -r src/ dist/"
+    "build": "cp -r src/ dist/",
+    "start": "serve dist/",
+    "test:e2e": "cypress run",
+    "watch:e2e": "cypress open"
   },
   "repository": {
     "type": "git",
@@ -20,5 +23,11 @@
   "homepage": "https://github.com/jbmoelker/demo-actions-on-netlify#readme",
   "dependencies": {
     "@actions/core": "^1.0.0"
+  },
+  "devDependencies": {
+    "serve": "^11.1.0"
+  },
+  "optionalDependencies": {
+    "cypress": "^3.4.1"
   }
 }
