@@ -6,6 +6,7 @@
   "scripts": {
     "prebuild": "rm -rf dist/",
     "build": "cp -r src/ dist/",
+    "lighthouse": "lighthouse 'http://localhost:5000/fonts.html' --view",
     "start": "serve dist/",
     "test:e2e": "cypress run",
     "watch:e2e": "cypress open"
@@ -25,6 +26,7 @@
     "@actions/core": "^1.0.0"
   },
   "devDependencies": {
+    "lighthouse": "^5.2.0",
     "serve": "^11.1.0"
   },
   "optionalDependencies": {
