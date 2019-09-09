@@ -1,5 +1,5 @@
 name: Audit Netlify Deploy Preview
-on: [check_suite]
+on: [check_suite, check_run]
 
 jobs:
   e2e:
@@ -17,6 +17,9 @@ jobs:
 
       - name: Install npm dependencies
         run: npm install
+        
+      - name: Log GH event event data
+        run: node ./actions/log-event.js
 
       - name: Set Deploy URL
         if: github.event.check_suite.app.name == 'Netlify' && github.event.check_suite.conclusion == 'success'
