@@ -7,7 +7,7 @@ function getEventData() {
 
 const eventData = getEventData()
 const prNumber = eventData.check_suite.pull_requests[0].number
-const deployUrl = `https://deploy-preview-${prNumber}--demo-actions-on-netlify.netlify.com/`
+const deployUrl = `https://deploy-preview-${prNumber}--${eventData.repository.name}.netlify.com/`
 
 core.debug(`deploy url: ${deployUrl}`)
 
