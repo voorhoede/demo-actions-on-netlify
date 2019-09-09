@@ -1,5 +1,5 @@
 name: Audit Netlify Deploy Preview
-on: status
+on: [check_suite]
 
 jobs:
   e2e:
