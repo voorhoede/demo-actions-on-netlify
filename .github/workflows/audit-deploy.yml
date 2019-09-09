@@ -20,7 +20,7 @@ jobs:
 
       - name: Set Deploy URL
         if: github.event.check_suite.app.name == 'Netlify' && github.event.check_suite.conclusion == 'success'
-        run: node ./actions/set-deploy-url.js
+        run: node ./actions/set-deploy-url.js && node ./actions/log-event.js
 
       - name: Run end-to-end tests with Cypress
         if: github.event.check_suite.app.name == 'Netlify' && github.event.check_suite.conclusion == 'success'
