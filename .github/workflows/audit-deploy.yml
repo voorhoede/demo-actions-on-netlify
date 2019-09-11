@@ -1,9 +1,11 @@
 name: Audit Netlify Deploy Preview
-on: [check_suite]
+on:
+  check_suite:
+    types: [completed]
 
 jobs:
-  e2e:
-    name: Run e2e tests
+  integration:
+    name: Run integration tests
     runs-on: ubuntu-latest
     steps:
 
@@ -16,12 +18,18 @@ jobs:
           version: 10.x
 
       - name: Install npm dependencies
-        run: npm install
+        run: npm install --no-optional
 
-      - name: Set Deploy URL
-        if: github.event.check_suite.app.name == 'Netlify' && github.event.check_suite.conclusion == 'success'
-        run: node ./actions/set-deploy-url.js
+      - name: Run Cypress
+        uses: ./.github/actions/run-cypress
 
-      - name: Run end-to-end tests with Cypress
-        if: github.event.check_suite.app.name == 'Netlify' && github.event.check_suite.conclusion == 'success'
-        run: npm run test:e2e
+      - name: ls cypress cache
+        run: ls -l /home/runner/work/demo-actions-on-netlify/demo-actions-on-netlify/cypress-cache
+      # - name: Set Deploy URL
+      #   if: github.event.check_suite.app.name == 'Netlify' && github.event.check_suite.conclusion == 'success'
+      #   run: node ./actions/set-deploy-url.js
+
+      # cypress run --config baseUrl=http://hi.com/
+      # - name: Run end-to-end tests with Cypress
+      #   if: github.event.check_suite.app.name == 'Netlify' && github.event.check_suite.conclusion == 'success'
+      #   run: CYPRESS_CACHE_FOLDER=$GITHUB_WORKSPACE/cypress-cache; npm run test:e2e
