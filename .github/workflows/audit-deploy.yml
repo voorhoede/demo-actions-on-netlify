@@ -23,6 +23,9 @@ jobs:
       - uses: ./.github/actions/get-netlify-url
         if: github.event.check_suite.app.name == 'Netlify' && github.event.check_suite.conclusion == 'success'
         id: get-netlify-url
+        with:
+          basic-auth-username: demo
+          basic-auth-password: tryme
 
       - name: Run Cypress
         if: github.event.check_suite.app.name == 'Netlify' && github.event.check_suite.conclusion == 'success'
