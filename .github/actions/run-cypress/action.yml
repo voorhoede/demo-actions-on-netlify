@@ -1,13 +1,9 @@
 name: 'Run Cypress'
 description: 'Run Cypress'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  base-url:
+    description: 'Cypress base URL'
     required: true
-    default: 'World'
-outputs:
-  time: # id of output
-    description: 'The time we greeted you'
 runs:
   using: 'node12'
   main: 'main.js'

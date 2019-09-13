@@ -1,13 +1,12 @@
 name: 'Get Netlify deployment URL'
 description: 'Get Netlify deployment URL at the current branch'
 inputs:
-  who-to-greet:
-    description: 'Who to greet'
-    required: true
-    default: 'World'
+  site-name:
+    description: 'Netlify site name, defaults to repository name'
+    required: false
 outputs:
-  time:
-    description: 'The time we greeted you'
+  url:
+    description: 'The Netlify deployment URL'
 runs:
   using: 'node12'
   main: 'main.js'

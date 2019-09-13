@@ -14,8 +14,7 @@ try {
 }
 
 function main() {
-  console.log('RECEIVED NETLIFY URL AS', process.env.NETLIFY_URL);
-  core.exportVariable('CYPRESS_BASE_URL', process.env.NETLIFY_URL);
+  const baseUrl = core.getInput('base-url', { required: true });
 
   const cypressCachePath = path.join(process.env.GITHUB_WORKSPACE, 'cypress-cache');
   const cypressVersion = JSON.parse(fs.readFileSync('package-lock.json')).dependencies.cypress.version;
@@ -24,15 +23,13 @@ function main() {
 
   getCypress(cypressVersion)
     .then(() => {
-      console.info('Installed Cypress!');
-
       toolCache.cacheDir(
         cypressCachePath,
         'cypress',
         cypressVersion
       )
 
-      exec('./node_modules/.bin/cypress run');
+      exec(`./node_modules/.bin/cypress run --config baseUrl=${baseUrl}`);
     });
 }
 
@@ -40,14 +37,5 @@ function getCypress(version) {
   if (toolCache.find('cypress', version) !== '')
     return;
 
-  return exec(
-    'npm',
-    ['install', '--no-audit', 'cypress'],
-    {
-      // env: {
-      //   ...process.env,
-      //   'CYPRESS_CACHE_FOLDER': cypressCachePath,
-      // },
-    }
-  )
+  return exec('npm install --no-audit cypress');
 }

@@ -21,10 +21,12 @@ jobs:
         run: npm install --no-optional --no-audit
 
       - uses: ./.github/actions/get-netlify-url
-      # if: github.event.check_suite.app.name == 'Netlify' && github.event.check_suite.conclusion == 'success'
+        id: get-netlify-url
 
       - name: Run Cypress
         uses: ./.github/actions/run-cypress
+        with:
+          base-url: ${{ steps.get-netlify-url.outputs.url }}
 
       # cypress run --config baseUrl=http://hi.com/
       # - name: Run end-to-end tests with Cypress
