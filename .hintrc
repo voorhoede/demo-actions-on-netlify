@@ -1,0 +1,17 @@
+{
+  "extends": [
+      "web-recommended"
+  ],
+  "connector": {
+    "name": "puppeteer"
+  },
+  "formatters": ["stylish"],
+  "hints": {
+    "http-cache": "off",
+    "http-compression": "off",
+    "meta-viewport": "off",
+    "ssllabs": "off",
+    "strict-transport-security": "off",
+    "x-content-type-options": "off"
+  }
+}
