@@ -1,6 +1,11 @@
 context(`Demo (${Cypress.config().baseUrl})`, () => {
     beforeEach(() => {
-      cy.visit('/protected/')
+      cy.visit('/protected/', {
+        auth: {
+          username: 'demo',
+          password: 'tryme'
+        }
+      })
     })
   
     describe('Home page', () => {
