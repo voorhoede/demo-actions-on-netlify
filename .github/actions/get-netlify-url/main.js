@@ -11,7 +11,7 @@ const siteName = core.getInput('site-name') || eventData.repository.name;
 const basicAuthUsername = core.getInput('basic-auth-username');
 const basicAuthPassword = core.getInput('basic-auth-password');
 const basicAuth = basicAuthUsername && basicAuthPassword
-  ? `${basicAuthUsername}:${basicAuthPassword}`
+  ? `${basicAuthUsername}:${basicAuthPassword}@`
   : '';
 
 core.debug(`Context: ${pullRequestNumber ? 'pull request' : 'none'}`);
