@@ -9,6 +9,9 @@
   "hints": {
     "http-cache": "off",
     "http-compression": "off",
-    "ssllabs": "off"
+    "meta-viewport": "off",
+    "ssllabs": "off",
+    "strict-transport-security": "off",
+    "x-content-type-options": "off"
   }
 }
