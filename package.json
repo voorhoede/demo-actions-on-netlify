@@ -25,6 +25,8 @@
   "dependencies": {},
   "devDependencies": {
     "@actions/core": "^1.0.0",
+    "@actions/exec": "^1.0.1",
+    "@actions/tool-cache": "^1.1.1",
     "@hint/configuration-web-recommended": "^7.2.1",
     "hint": "^5.2.3"
   },
