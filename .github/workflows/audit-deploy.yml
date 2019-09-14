@@ -52,6 +52,6 @@ jobs:
 
       - name: Run Web Hint
         if: github.event.check_suite.app.name == 'Netlify' && github.event.check_suite.conclusion == 'success'
-        run: hint ${NETLIFY_URL}
+        run: npm run test:hint -- ${NETLIFY_URL}
         env:
           NETLIFY_URL: ${{ steps.get-netlify-url.outputs.url }}

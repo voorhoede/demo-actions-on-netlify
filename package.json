@@ -8,7 +8,7 @@
     "build": "cp -r src/ dist/",
     "start": "serve dist/",
     "test:e2e": "cypress run",
-    "test:hint": "hint https://demo-actions-on-netlify.netlify.com/",
+    "test:hint": "hint",
     "watch:e2e": "cypress open"
   },
   "repository": {
