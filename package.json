@@ -8,6 +8,7 @@
     "build": "cp -r src/ dist/",
     "start": "serve dist/",
     "test:e2e": "cypress run",
+    "test:hint": "hint https://demo-actions-on-netlify.netlify.com/",
     "watch:e2e": "cypress open"
   },
   "repository": {
@@ -21,13 +22,14 @@
     "url": "https://github.com/jbmoelker/demo-actions-on-netlify/issues"
   },
   "homepage": "https://github.com/jbmoelker/demo-actions-on-netlify#readme",
-  "dependencies": {
-    "@actions/core": "^1.0.0"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "serve": "^11.1.0"
+    "@actions/core": "^1.0.0",
+    "@hint/configuration-web-recommended": "^7.2.1",
+    "hint": "^5.2.3"
   },
   "optionalDependencies": {
-    "cypress": "^3.4.1"
+    "cypress": "^3.4.1",
+    "serve": "^11.1.0"
   }
 }

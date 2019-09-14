@@ -1,4 +1,5 @@
 dist/
+hint-report/
 node_modules/
 test/e2e/screenshots/
 test/e2e/videos/

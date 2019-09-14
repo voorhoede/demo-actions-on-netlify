@@ -1,0 +1,10 @@
+{
+    "extends": [
+        "web-recommended"
+    ],
+    "hints": {
+        "http-cache": "off",
+        "http-compression": "off",
+        "ssllabs": "off"
+    }
+}
