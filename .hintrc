@@ -1,10 +1,14 @@
 {
-    "extends": [
-        "web-recommended"
-    ],
-    "hints": {
-        "http-cache": "off",
-        "http-compression": "off",
-        "ssllabs": "off"
-    }
+  "extends": [
+      "web-recommended"
+  ],
+  "connector": {
+    "name": "puppeteer"
+  },
+  "formatters": ["stylish"],
+  "hints": {
+    "http-cache": "off",
+    "http-compression": "off",
+    "ssllabs": "off"
+  }
 }

@@ -28,6 +28,8 @@
     "@actions/exec": "^1.0.1",
     "@actions/tool-cache": "^1.1.1",
     "@hint/configuration-web-recommended": "^7.2.1",
+    "@hint/connector-puppeteer": "^2.1.0",
+    "@hint/formatter-stylish": "^3.1.6",
     "hint": "^5.2.3"
   },
   "optionalDependencies": {
