@@ -1,11 +1,11 @@
-name: Audit Netlify Deploy Preview
+name: Audit Deploy
 on:
   check_suite:
     types: [completed]
 
 jobs:
   integration:
-    name: Run integration tests
+    name: Integration tests
     runs-on: ubuntu-latest
     steps:
 
@@ -22,13 +22,36 @@ jobs:
 
       - uses: ./.github/actions/get-netlify-url
         id: get-netlify-url
+        if: github.event.check_suite.app.name == 'Netlify' && github.event.check_suite.conclusion == 'success'
 
       - name: Run Cypress
+        if: github.event.check_suite.app.name == 'Netlify' && github.event.check_suite.conclusion == 'success'
         uses: ./.github/actions/run-cypress
         with:
           base-url: ${{ steps.get-netlify-url.outputs.url }}
 
-      # cypress run --config baseUrl=http://hi.com/
-      # - name: Run end-to-end tests with Cypress
-      #   if: github.event.check_suite.app.name == 'Netlify' && github.event.check_suite.conclusion == 'success'
-      #   run: CYPRESS_CACHE_FOLDER=$GITHUB_WORKSPACE/cypress-cache; npm run test:e2e
+  webhint:
+    name: Web Hint
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Git checkout
+        uses: actions/checkout@master
+
+      - name: Install Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10.x
+
+      - name: Install npm dependencies
+        run: npm install --no-optional --no-audit
+
+      - uses: ./.github/actions/get-netlify-url
+        id: get-netlify-url
+        if: github.event.check_suite.app.name == 'Netlify' && github.event.check_suite.conclusion == 'success'
+
+      - name: Run Web Hint
+        if: github.event.check_suite.app.name == 'Netlify' && github.event.check_suite.conclusion == 'success'
+        run: hint ${NETLIFY_URL}
+        env:
+          NETLIFY_URL: ${{ steps.get-netlify-url.outputs.url }}
