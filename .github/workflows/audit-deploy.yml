@@ -10,25 +10,25 @@ jobs:
     steps:
 
       - name: Git checkout
+        if: github.event.check_suite.app.name == 'Netlify' && github.event.check_suite.conclusion == 'success'
         uses: actions/checkout@master
 
       - name: Install Node
+        if: github.event.check_suite.app.name == 'Netlify' && github.event.check_suite.conclusion == 'success'
         uses: actions/setup-node@v1
         with:
           node-version: 10.x
 
       - name: Install npm dependencies
+        if: github.event.check_suite.app.name == 'Netlify' && github.event.check_suite.conclusion == 'success'
         run: npm install --no-optional --no-audit
 
       - uses: ./.github/actions/get-netlify-url
+        if: github.event.check_suite.app.name == 'Netlify' && github.event.check_suite.conclusion == 'success'
         id: get-netlify-url
 
       - name: Run Cypress
+        if: github.event.check_suite.app.name == 'Netlify' && github.event.check_suite.conclusion == 'success'
         uses: ./.github/actions/run-cypress
         with:
           base-url: ${{ steps.get-netlify-url.outputs.url }}
-
-      # cypress run --config baseUrl=http://hi.com/
-      # - name: Run end-to-end tests with Cypress
-      #   if: github.event.check_suite.app.name == 'Netlify' && github.event.check_suite.conclusion == 'success'
-      #   run: CYPRESS_CACHE_FOLDER=$GITHUB_WORKSPACE/cypress-cache; npm run test:e2e
