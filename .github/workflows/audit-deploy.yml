@@ -15,9 +15,6 @@ jobs:
         with:
           node-version: 10.x
 
-      - name: Install npm dependencies
-        run: npm install --no-optional --no-audit
-
       - uses: voorhoede/get-netlify-url@v1
         id: get-netlify-url
         with:
@@ -29,5 +26,4 @@ jobs:
         env:
           CYPRESS_BASE_URL: ${{ steps.get-netlify-url.outputs.url }}
         with:
-          install: false
           wait-on: ${{ steps.get-netlify-url.outputs.url }}
