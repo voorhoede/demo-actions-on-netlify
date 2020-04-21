@@ -1,9 +1,0 @@
-name: 'Run Cypress'
-description: 'Run Cypress'
-inputs:
-  base-url:
-    description: 'Cypress base URL'
-    required: true
-runs:
-  using: 'node12'
-  main: 'main.js'

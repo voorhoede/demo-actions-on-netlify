@@ -4,8 +4,12 @@ const fs = require('fs');
 
 const core = require('@actions/core');
 
+core.debug(`GitHub Event Name: ${process.env.GITHUB_EVENT_NAME}`);
+core.debug(`GitHub Event Path: ${process.env.GITHUB_EVENT_PATH}`);
+
 const eventData = JSON.parse(fs.readFileSync(process.env.GITHUB_EVENT_PATH));
-const pullRequestNumber = eventData.check_suite.pull_requests[0].number;
+
+core.debug(`GitHub Event Data: ${JSON.stringify(eventData, null, 2)}`);
 
 const siteName = core.getInput('site-name') || eventData.repository.name;
 const basicAuthUsername = core.getInput('basic-auth-username');
@@ -14,12 +18,12 @@ const basicAuth = basicAuthUsername && basicAuthPassword
   ? `${basicAuthUsername}:${basicAuthPassword}@`
   : '';
 
-core.debug(`Context: ${pullRequestNumber ? 'pull request' : 'none'}`);
+core.debug(`Context: ${eventData.number ? 'pull request' : 'none'}`);
 core.debug(`Site name: ${siteName}`);
 
 core.setOutput(
   'url',
-  pullRequestNumber
-    ? `https://${basicAuth}deploy-preview-${pullRequestNumber}--${siteName}.netlify.com/`
-    : `htttps://${basicAuth}${siteName}.netlify.com/`
+  eventData.number
+    ? `https://${basicAuth}deploy-preview-${eventData.number}--${siteName}.netlify.app/`
+    : `https://${basicAuth}${siteName}.netlify.com/`
 );
