@@ -1,4 +1,4 @@
-name: Audit Netlify Deploy Preview
+name: Audit Preview
 on: [push, pull_request]
 
 jobs:
