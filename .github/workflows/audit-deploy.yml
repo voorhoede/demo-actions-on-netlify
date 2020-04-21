@@ -18,7 +18,7 @@ jobs:
       - name: Install npm dependencies
         run: npm install --no-optional --no-audit
 
-      - uses: ./.github/actions/get-netlify-url
+      - uses: voorhoede/get-netlify-url@v1
         id: get-netlify-url
         with:
           basic-auth-username: demo
