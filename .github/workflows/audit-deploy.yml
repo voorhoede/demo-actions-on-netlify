@@ -1,5 +1,5 @@
 name: Audit Preview
-on: [pull_request]
+on: [push, pull_request]
 
 jobs:
   integration:
@@ -10,7 +10,7 @@ jobs:
       - name: Git checkout
         uses: actions/checkout@master
 
-      - uses: voorhoede/get-netlify-url@v1
+      - uses: ./.github/actions/get-netlify-url
         id: get-netlify-url
         with:
           basic-auth-username: demo
