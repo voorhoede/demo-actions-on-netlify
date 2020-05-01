@@ -12,9 +12,6 @@ jobs:
 
       - uses: voorhoede/get-netlify-url@v2
         id: get-netlify-url
-        with:
-          basic-auth-username: demo
-          basic-auth-password: tryme
 
       - name: Cypress run
         uses: cypress-io/github-action@v1
